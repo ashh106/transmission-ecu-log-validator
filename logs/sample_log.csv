@@ -1,0 +1,17 @@
+timestamp_ms,signal,value
+0,shift_request,2
+50,gear_change,2
+100,engine_rpm,1500
+150,torque_stabilized,1
+200,shift_request,3
+250,gear_change,3
+300,engine_rpm,2100
+350,torque_stabilized,1
+400,engine_rpm,2300
+450,engine_rpm,2500
+500,engine_rpm,2700
+550,shift_request,4
+600,gear_change,4
+650,engine_rpm,3000
+700,torque_stabilized,1
+750,engine_rpm,3200

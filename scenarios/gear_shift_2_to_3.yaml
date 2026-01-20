@@ -1,0 +1,18 @@
+name: Gear Shift 2 to 3 Validation
+description: Validates transmission ECU behavior during gear shift from 2nd to 3rd gear
+
+# Shift timing constraints
+shift_timing:
+  max_delay_ms: 100  # Maximum allowed delay between shift request and gear change
+
+# RPM safety limits
+rpm_safety:
+  min_rpm: 1000  # Minimum safe engine RPM
+  max_rpm: 6000  # Maximum safe engine RPM
+
+# Expected signal sequence
+signal_sequence:
+  expected_order:
+    - shift_request      # Shift command initiated
+    - gear_change        # Gear physically changed
+    - torque_stabilized  # Torque converter stabilized

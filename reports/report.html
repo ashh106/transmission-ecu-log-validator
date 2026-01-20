@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECU Validation Report</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        .summary-card {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border: 2px solid #e1e4e8;
+        }
+        .summary-card .label {
+            color: #6c757d;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .summary-card .value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+        .summary-card.total .value { color: #667eea; }
+        .summary-card.passed .value { color: #28a745; }
+        .summary-card.failed .value { color: #dc3545; }
+        .metadata {
+            padding: 30px;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        .metadata-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .metadata-item strong {
+            color: #495057;
+            display: inline-block;
+            width: 140px;
+        }
+        .results {
+            padding: 30px;
+        }
+        .result-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-left: 4px solid;
+            border-radius: 4px;
+        }
+        .result-item.pass {
+            border-left-color: #28a745;
+            background: #f0fdf4;
+        }
+        .result-item.fail {
+            border-left-color: #dc3545;
+            background: #fef2f2;
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .result-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #212529;
+        }
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge.pass {
+            background: #28a745;
+            color: white;
+        }
+        .badge.fail {
+            background: #dc3545;
+            color: white;
+        }
+        .result-message {
+            color: #495057;
+            line-height: 1.6;
+        }
+        .footer {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            text-align: center;
+            color: #6c757d;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Transmission ECU Validation Report</h1>
+            <p>Automated validation results for transmission ECU behavior</p>
+        </div>
+        
+        <div class="summary">
+            <div class="summary-card total">
+                <div class="label">Total Checks</div>
+                <div class="value">3</div>
+            </div>
+            <div class="summary-card passed">
+                <div class="label">Passed</div>
+                <div class="value">3</div>
+            </div>
+            <div class="summary-card failed">
+                <div class="label">Failed</div>
+                <div class="value">0</div>
+            </div>
+        </div>
+        
+        <div class="metadata">
+            <div class="metadata-item">
+                <strong>Test Scenario:</strong> Gear Shift 2 to 3 Validation
+            </div>
+            <div class="metadata-item">
+                <strong>Description:</strong> Validates transmission ECU behavior during gear shift from 2nd to 3rd gear
+            </div>
+            <div class="metadata-item">
+                <strong>Validation Time:</strong> 2026-01-21 00:46:36
+            </div>
+        </div>
+        
+        <div class="results">
+
+            <div class="result-item pass">
+                <div class="result-header">
+                    <div class="result-name">Shift Timing</div>
+                    <span class="badge pass">PASS</span>
+                </div>
+                <div class="result-message">All 3 gear shifts completed within 100ms limit</div>
+            </div>
+
+            <div class="result-item pass">
+                <div class="result-header">
+                    <div class="result-name">RPM Safety</div>
+                    <span class="badge pass">PASS</span>
+                </div>
+                <div class="result-message">All 7 RPM readings within safe range [1000, 6000] (observed range: [1500.0, 3200.0])</div>
+            </div>
+
+            <div class="result-item pass">
+                <div class="result-header">
+                    <div class="result-name">Signal Sequence</div>
+                    <span class="badge pass">PASS</span>
+                </div>
+                <div class="result-message">Signals appeared in correct sequence: shift_request(0ms) -> gear_change(50ms) -> torque_stabilized(150ms)</div>
+            </div>
+
+        </div>
+        
+        <div class="footer">
+            Generated by Transmission ECU Log Validator
+        </div>
+    </div>
+</body>
+</html>
